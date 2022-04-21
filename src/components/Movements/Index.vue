@@ -5,7 +5,11 @@
       <Movement
         v-for="movement in movements"
         :key="movement.id"
+        :id="movement.id"
         :title="movement.title"
+        :description="movement.description"
+        :amount="movement.amount"
+        @remove="remove"
       />
     </div>
   </div>
@@ -26,6 +30,11 @@ export default {
   },
   data() {
     return {};
+  },
+  methods: {
+    remove(id) {
+      console.log("removeeeer: " + id);
+    },
   },
 };
 </script>

@@ -12,7 +12,9 @@
       >
         <template #graphic> Graphic </template>
 
-        <template #action> Action </template>
+        <template #action>
+          <Action />
+        </template>
       </Resume>
     </template>
     <template #movements>
@@ -26,6 +28,7 @@ import Layout from "./Layout.vue";
 import Header from "./Header.vue";
 import Resume from "./Resume/Index.vue";
 import Movements from "./Movements/Index.vue";
+import Action from "./Action.vue";
 
 export default {
   components: {
@@ -33,6 +36,7 @@ export default {
     Header,
     Resume,
     Movements,
+    Action,
   },
 
   data() {
@@ -44,31 +48,43 @@ export default {
           id: 1,
           title: "Movimiento",
           description: "Deposito de salario",
-          amount: "1000",
+          amount: 1000,
         },
         {
           id: 2,
           title: "Movimiento 1",
           description: "Deposito de honorarios",
-          amount: "500",
+          amount: 500,
         },
         {
           id: 3,
           title: "Movimiento 3",
           description: "Comida",
-          amount: "-100",
+          amount: -100,
         },
         {
           id: 4,
           title: "Movimiento 4",
           description: "Colegiatura",
-          amount: "1000",
+          amount: 1000,
         },
         {
           id: 5,
           title: "Movimiento 5",
           description: "Reparación equipo",
-          amount: "1000",
+          amount: 1000,
+        },
+        {
+          id: 6,
+          title: "Movimiento 6",
+          description: "Reparación equipo",
+          amount: 1000,
+        },
+        {
+          id: 7,
+          title: "Movimiento 7",
+          description: "Reparación equipo",
+          amount: 1000,
         },
       ],
     };
