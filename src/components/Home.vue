@@ -13,7 +13,7 @@
         <template #graphic> Graphic </template>
 
         <template #action>
-          <Action />
+          <Action @saveMovement="addMovement" />
         </template>
       </Resume>
     </template>
@@ -88,6 +88,11 @@ export default {
         },
       ],
     };
+  },
+  methods: {
+    addMovement(movement) {
+      console.log(movement);
+    },
   },
 };
 </script>
