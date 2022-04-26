@@ -19,11 +19,11 @@
         <div class="field">
           <label for="">Tipo de movimiento</label>
           <label for="" class="radio-label">
-            <input type="radio" v-model="movement.type" value="ingreso" />
+            <input type="radio" v-model="type" value="ingreso" />
             <span>Ingreso</span>
           </label>
           <label for="" class="radio-label">
-            <input type="radio" v-model="movement.type" value="gasto" />
+            <input type="radio" v-model="type" value="gasto" />
             <span>Gasto</span>
           </label>
         </div>
@@ -50,12 +50,19 @@ export default {
         title: "",
         amount: 0,
         description: "",
-        type: "",
       },
+      type: "",
     };
   },
   methods: {
     saveMovement(movement) {
+      //Generamos el id
+      movement.id = new Date().getTime();
+      //Agregamos la fecha del movimiento
+      movement.time = new Date();
+      //Validamos si es ingreso o gasto
+      this.type == "gasto" ? (movement.amount = movement.amount * -1) : "";
+
       this.$emit("saveMovement", movement);
       this.showModal = false;
     },

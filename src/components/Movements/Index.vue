@@ -33,7 +33,7 @@ export default {
   },
   methods: {
     remove(id) {
-      console.log("removeeeer: " + id);
+      this.$emit("remove", id);
     },
   },
 };
