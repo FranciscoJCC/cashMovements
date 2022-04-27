@@ -49,7 +49,7 @@ export default {
         const x = (300 / total) * (index + 1);
         const y = this.amountToPixels(amount);
         return `${points} ${x},${y}`;
-      }, "0,100");
+      }, `0,${this.amountToPixels(this.amounts.length ? this.amounts[0] : 0)}`);
     },
     zero() {
       return this.amountToPixels(0);
@@ -88,6 +88,14 @@ export default {
 
     untap() {
       this.showPointer = false;
+    },
+  },
+
+  watch: {
+    pointer(value) {
+      const index = Math.ceil(value / (300 / this.amounts.length));
+      if (index < 0 || index > this.amounts.length) return;
+      this.$emit("select", this.amounts[index - 1]);
     },
   },
 };

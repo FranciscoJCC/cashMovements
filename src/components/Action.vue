@@ -64,7 +64,13 @@ export default {
       this.type == "gasto" ? (movement.amount = movement.amount * -1) : "";
 
       this.$emit("saveMovement", movement);
+      this.cleanForm();
       this.showModal = false;
+    },
+    cleanForm() {
+      this.movement.title = "";
+      this.movement.amount = 0;
+      this.movement.description = "";
     },
   },
 };

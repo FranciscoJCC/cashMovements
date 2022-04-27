@@ -35,7 +35,7 @@ export default {
   },
   computed: {
     amountShow() {
-      return this.amount !== null ? this.amount : this.totalAmount;
+      return this.amount > 0 ? this.amount : this.totalAmount;
     },
     labelShow() {
       return this.date == null ? this.label : this.date;

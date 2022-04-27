@@ -8,10 +8,10 @@
         :label="'Ahorro total'"
         :date="date"
         :amount="amount"
-        :total-amount="200000"
+        :totalAmount="totalAmount"
       >
         <template #graphic>
-          <Graphic :amounts="amounts" />
+          <Graphic :amounts="amounts" @select="select" />
         </template>
 
         <template #action>
@@ -55,18 +55,24 @@ export default {
         .map((m) => m.amount);
 
       return lastDays.map((m, i) => {
-        const lastMovements = lastDays.slice(0, i);
+        const lastMovements = lastDays.slice(0, i + 1);
 
         return lastMovements.reduce((addition, movement) => {
           return addition + movement;
         }, 0);
       });
     },
+
+    totalAmount() {
+      return this.movements.reduce((addition, movement) => {
+        return addition + movement.amount;
+      }, 0);
+    },
   },
 
   data() {
     return {
-      amount: 100,
+      amount: 0,
       /*  amounts: [100, 200, 500, 200, -400, -600, 0, 300, 500, 500], */
       date: "26 de noviembre del 2022",
       movements: [
@@ -147,11 +153,30 @@ export default {
     addMovement(movement) {
       /* console.log(movement); */
       this.movements.push(movement);
+      this.save();
     },
     remove(id) {
       let index = this.movements.findIndex((movement) => movement.id === id);
       this.movements.splice(index, 1);
+      this.save();
     },
+
+    save() {
+      localStorage.setItem("movements", JSON.stringify(this.movements));
+    },
+
+    select(el) {
+      this.amount = el;
+    },
+  },
+  mounted() {
+    /* const movements = JSON.parse(localStorage.getItem("movements"));
+
+    if (Array.isArray(movements)) {
+      this.movements = movements?.map((movement) => {
+        return { ...movement, time: new Date(movement.time) };
+      });
+    } */
   },
 };
 </script>
