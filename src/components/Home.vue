@@ -76,7 +76,7 @@ export default {
       /*  amounts: [100, 200, 500, 200, -400, -600, 0, 300, 500, 500], */
       date: "26 de noviembre del 2022",
       movements: [
-        {
+        /* {
           id: 1,
           title: "Movimiento",
           description: "Deposito de salario",
@@ -145,7 +145,7 @@ export default {
           description: "Reparación equipo",
           amount: 550,
           time: new Date("2022-04-23"),
-        },
+        }, */
       ],
     };
   },
@@ -170,13 +170,13 @@ export default {
     },
   },
   mounted() {
-    /* const movements = JSON.parse(localStorage.getItem("movements"));
+    const movements = JSON.parse(localStorage.getItem("movements"));
 
     if (Array.isArray(movements)) {
       this.movements = movements?.map((movement) => {
         return { ...movement, time: new Date(movement.time) };
       });
-    } */
+    }
   },
 };
 </script>

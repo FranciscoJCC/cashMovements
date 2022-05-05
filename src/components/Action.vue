@@ -6,15 +6,15 @@
       <form>
         <div class="field">
           <label for="">Titulo</label>
-          <input type="text" v-model="movement.title" />
+          <input type="text" v-model="title" />
         </div>
         <div class="field">
           <label for="">Cantidad</label>
-          <input type="number" v-model="movement.amount" />
+          <input type="number" v-model="amount" />
         </div>
         <div class="field">
           <label for="">Descripción</label>
-          <textarea rows="4" v-model="movement.description"></textarea>
+          <textarea rows="4" v-model="description"></textarea>
         </div>
         <div class="field">
           <label for="">Tipo de movimiento</label>
@@ -28,7 +28,7 @@
           </label>
         </div>
         <div class="action">
-          <button type="button" @click="saveMovement(movement)">
+          <button type="button" @click="saveMovement()">
             Agregar movimiento
           </button>
         </div>
@@ -46,31 +46,38 @@ export default {
     return {
       showModal: false,
 
-      movement: {
-        title: "",
-        amount: 0,
-        description: "",
-      },
+      id: "",
+      title: "",
+      amount: 0,
+      description: "",
+      time: "",
+
       type: "",
     };
   },
   methods: {
-    saveMovement(movement) {
+    saveMovement() {
       //Generamos el id
-      movement.id = new Date().getTime();
+      this.id = new Date().getTime();
       //Agregamos la fecha del movimiento
-      movement.time = new Date();
+      this.time = new Date();
       //Validamos si es ingreso o gasto
-      this.type == "gasto" ? (movement.amount = movement.amount * -1) : "";
+      this.type == "gasto" ? (this.amount = this.amount * -1) : "";
 
-      this.$emit("saveMovement", movement);
+      this.$emit("saveMovement", {
+        id: this.id,
+        title: this.title,
+        amount: this.amount,
+        description: this.description,
+        time: this.time,
+      });
       this.cleanForm();
       this.showModal = false;
     },
     cleanForm() {
-      this.movement.title = "";
-      this.movement.amount = 0;
-      this.movement.description = "";
+      this.title = "";
+      this.amount = 0;
+      this.description = "";
     },
   },
 };
